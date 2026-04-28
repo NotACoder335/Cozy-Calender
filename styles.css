@@ -1,0 +1,131 @@
+/* 
+  The * selector applies to EVERY element on the page. 
+  'box-sizing: border-box' ensures that padding and borders are included in an element's total width and height, 
+  which makes laying out elements much easier. 
+*/
+* {
+  box-sizing: border-box;
+}
+
+/* The body is the main wrapper for the entire webpage. */
+body {
+  margin: 0;                   /* Removes default spacing around the edges of the page */
+  width: 100vw;                /* Sets the width to 100% of the viewport (window) width */
+  height: 100vh;               /* Sets the height to 100% of the viewport (window) height */
+  user-select: none;           /* Prevents the user from highlighting/selecting text by clicking and dragging */
+  -webkit-app-region: drag;    /* Special feature for Electron desktop apps: allows the user to click and drag the whole window */
+  border-radius: 20px;         /* Rounds the corners of the main application window */
+  background: transparent;     /* Makes the background see-through so the window shape is visible */
+}
+
+/* .app targets the main container holding all the calendar UI elements */
+.app {
+    display: flex;                /* Turns on Flexbox, a powerful system for aligning elements */
+    flex-direction: column;       /* Stacks the child elements vertically from top to bottom */
+    justify-content: center;      /* Centers the elements vertically within the container */
+    align-items: center;          /* Centers the elements horizontally within the container */
+    gap: 0.5rem;                  /* Creates a small 0.5rem space between each child element */
+    width: 13.375rem;             /* Sets a fixed width for the app container */
+    padding: 1rem 1.0625rem;      /* Adds inner spacing: 1rem top/bottom, 1.0625rem left/right */
+
+    /* Background image settings for the outer purple frame */
+    background-image: url("assets/outer-frame-bg.png"); /* Loads the outer frame image */
+    background-size: cover;       /* Shrinks or stretches the image to cover the entire container */
+    background-repeat: no-repeat; /* Prevents the image from tiling over and over */
+    background-position: center;  /* Centers the image perfectly */
+    opacity: 0.8;                 /* Makes the entire container slightly see-through (80% visible) */
+}
+
+/* This targets all buttons, inputs, text areas, and dropdown menus */
+button,
+input,
+textarea,
+select {
+  /* Prevents dragging the window when trying to click these interactive elements */
+  -webkit-app-region: no-drag; 
+  /* Changes the mouse cursor to a little pointing hand when hovering over them */
+  cursor: pointer;             
+}
+
+/* .title targets the top pill-shaped box ("My Calender") */
+.title {
+  /* This all copied from dev mode in figma. can use penpot free dev mode */
+    display: flex;             /* Uses Flexbox so we can easily center the text inside */
+    width: 157px;              /* Fixed width for the title box */
+    aspect-ratio: 157/27;      /* Keeps the box shaped at this exact width-to-height ratio */
+    padding: 0.25rem 0.625rem; /* Adds some inner spacing so the text doesn't hit the edges */
+    justify-content: center;   /* Centers the text horizontally inside the Flexbox */
+    align-items: center;       /* Centers the text vertically inside the Flexbox */
+
+    border-radius: 6.25rem;    /* Makes the corners completely rounded to form a pill shape */
+    border: 1px solid #C079FF; /* Adds a thin 1px solid purple border */
+    background: rgba(210, 164, 255, 0.40); /* Adds a light purple background that is 40% see-through */
+
+    color: var(--white, #FFF); /* Sets the text color to white */
+
+    /* Text styling settings */
+    font-family: Pixeboy;      /* Uses the custom custom retro font */
+    font-size: 1rem;           /* Sets the standard text size */
+    font-style: normal;        /* Keeps the text upright (not italicized) */
+    font-weight: 400;          /* Normal font thickness (not bold) */
+    line-height: normal;       /* Uses standard spacing between lines of text */
+}
+
+/* #calender targets the inner box holding the date and month */
+#calender { 
+    display: flex;             /* Uses Flexbox again */
+    width: 11.25rem;           /* Fixed width for the inner box */
+    height: 10.0625rem;        /* Fixed height for the inner box */
+    flex-direction: column;    /* Stacks the Day and Month vertically */
+    justify-content: center;   /* Centers them vertically */
+    align-items: center;       /* Centers them horizontally */
+    gap: 1rem;                 /* Adds exactly 1rem of space between the day number and the month name */
+
+    /* Background image settings for the inner square frame */
+    background-image: url("assets/inner-frame-bg.png"); /* Loads the inner frame image */
+    background-size: cover;       /* Ensures the image fills the box entirely */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center;  /* Centers the image perfectly */
+}
+
+/* #day targets the large specific number (e.g., '9') */
+#day {
+    color: #fcffff;            /* Sets the text color to an icy white/blue color */
+    text-align: center;        /* Centers the text inside its box */
+    
+    /* These two properties create a colored outline around the text */
+    -webkit-text-stroke-width: 1.5px; /* Sets outline thickness */
+    -webkit-text-stroke-color: var(--mid-purple, #915ebd); /* Sets outline color to dark purple */
+    
+    font-family: Pixeboy;      /* Uses the custom retro font */
+    font-size: 8.5rem;         /* Makes the number huge */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;      /* Controls the vertical boundary spacing for the text element */
+    letter-spacing: 0.45rem;   /* Spreads out the distance between letters if there are multiple characters */
+
+    display: flex;             /* Uses Flexbox to wrap the number */
+    width: 11.25rem;           /* Forces the width of the text container */
+    height: 4.4375rem;         /* Forces the height of the text container */
+    flex-direction: column;    /* Vertical child stacking */
+    justify-content: center;   /* Centers the number perfectly inside this inner wrapper height */
+}
+
+/* #month targets the month string (e.g., 'APRIL') */
+#month {
+    color: #FFF;               /* Sets the text color to pure white */
+    text-align: center;        /* Centers the text inside its box */
+    
+    /* Adds an outline to the month text similarly to the day text */
+    -webkit-text-stroke-width: 1.5px; 
+    -webkit-text-stroke-color: #B58CD9; /* Sets outline to a lighter purple */
+    
+    font-family: Pixeboy;      /* Uses the custom retro font */
+    font-size: 2rem;           /* Sets font size noticeably smaller than the day number */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;      /* Controls the vertical boundary spacing */
+    letter-spacing: 0.3rem;    /* Spreads out the letters slightly */
+
+    width: 8.125rem;           /* Restricts the width of the month text container */
+}
